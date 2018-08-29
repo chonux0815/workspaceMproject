@@ -1,0 +1,56 @@
+<%@page import="java.net.URLEncoder"%>
+<%@page import="mrp.web.vo.Movie"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function idCheck(i) {
+		//alert("");
+		window.open("proboxoffice.main?i="+i, "",
+				"width=530,height=500,location=no,status=no,scrollbars=yes");
+	}
+</script>
+</head>
+<%
+	ArrayList<Movie> movieList = (ArrayList<Movie>) session.getAttribute("items");
+	String showRange = (String) request.getAttribute("showRange");
+%>
+<body class = "weeksMovie">
+
+	<%
+		if (movieList != null && movieList.size() > 0) {
+	%>
+	<table>
+		<tr>
+			<td colspan="4"><div class="head">추천 리뷰 영상</div></td>
+		</tr>
+		<tr>
+			<td colspan="4"><%=showRange%></td>
+		</tr>
+		<%
+			for (int i = 0; i < movieList.size(); i++) {
+		%>
+		<tr>
+			<td><%=i + 1%>위</td>
+			<td><%=movieList.get(i).getRankOldAndNew()%></td>
+			<td><a href="#"
+				onclick="idCheck(<%=i%>);"><%=movieList.get(i).getMovieNum()%></a></td>
+			<td><%=movieList.get(i).getAudiacc()%></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+	<%
+		}
+	%>
+</body>
+</html>

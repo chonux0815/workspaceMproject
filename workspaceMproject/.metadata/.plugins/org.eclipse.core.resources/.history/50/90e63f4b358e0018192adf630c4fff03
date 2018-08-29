@@ -1,0 +1,146 @@
+<%@page import="mrp.web.vo.PageInfo"%>
+<%@page import="mrp.web.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%!
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    %>
+    
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DAEGU</title>
+<style type="text/css">
+
+	#boardListArea{
+	width : 600px;
+	height : 450px;
+	margin : auto;
+	text-align: center;
+	border : 2px soild gold;
+	
+	}
+	h1{
+		text-align:center;
+	}
+	table{
+		width : 560px;
+		margin : auto;
+		text-align : center;
+		
+	}
+	.tr_title{
+		background : orange;
+	}
+	.td_num, .td_readcount{
+		width : 70px;
+	}
+	.td_subject{
+		width : 200px;
+		text-align : left;
+	}
+	.td_writer, .td_regdate{
+		width : 110px;
+	}
+	.td_writer, .td_regdate{
+		width : 110px;
+	}
+	.td_mcode{
+		width : 110px;
+	}
+	.notice{
+		background: green;
+	}
+</style>
+</head>
+<%
+	ArrayList<Board> boardList = (ArrayList<Board>)request.getAttribute("boardList");
+	ArrayList<Board> boardNoticeList=(ArrayList<Board>)request.getAttribute("boardNoticeList");
+	PageInfo pageInfo = (PageInfo)request.getAttribute("pageInfo");
+	int number =pageInfo.getNumber();
+	int b_division = (Integer)request.getAttribute("b_division");
+%>
+<body>
+	<section id = "boardListArea">
+	<%
+		if(boardList !=null && boardList.size() > 0){
+	%>
+		<h1>글목록</h1>
+		<table>
+			<tr class = "tr_title">
+				<td class = "td_mcode">영화제목</td>
+				<td class = "td_subject">제목</td>
+				<td class = "td_writer">작성자</td>
+				<td class = "td_readcount">조회수</td>
+				<td class = "td_regdate">작성일</td>
+			</tr>
+			<%
+			if(boardNoticeList !=null){
+				for(int i=0; i<boardNoticeList.size(); i++){
+			%>
+				<tr class="notice">
+					<td>공지사항</td>
+					<td><%=boardNoticeList.get(i).getB_name() %></td>
+					<a href="boardContent.bo?b_code=<%=boardList.get(i).getB_code()%>&pageNum=<%=pageInfo.getCurrentPage()%>&b_division=<%=b_division%>"><%=boardList.get(i).getB_name() %>
+					<td><%=boardNoticeList.get(i).getB_content() %></td>
+					</a>
+					<td><%=boardNoticeList.get(i).getB_author() %></td>
+					<td><%=boardNoticeList.get(i).getReadcount()%></td>
+					<td></td>
+				</tr>
+			<%
+				}
+			}
+			%>
+			<%
+				for(int i = 0; i <boardList.size();i++){
+			%>
+			<tr>
+				<td class="td_mcode"><%=boardList.get(i).getB_mcode() %></td>
+				<td class = "td_subject">
+				<a href="boardContent.bo?b_code=<%=boardList.get(i).getB_code()%>&pageNum=<%=pageInfo.getCurrentPage()%>&b_division=<%=b_division%>"><%=boardList.get(i).getB_name() %></a>
+				</td>
+				<td class = "td_writer"><%=boardList.get(i).getB_author() %></td>
+				<%-- <td class = "td_regdate"><%=sdf.format(boardList.get(i).getBoard_regDate()) %></td> --%>
+				<td class = "td_readcount"><%=boardList.get(i).getReadcount() %></td>
+			</tr>
+			<%
+				}
+			%>
+		</table>
+			<%
+				if(pageInfo.getStartPage() > 1){
+					
+			%>
+			<a href = "boardList.bo?pageNum=<%=pageInfo.getStartPage() - 10 %>&b_division=<%=b_division%>">[이전]</a>
+		<%
+		}
+			for(int i = pageInfo.getStartPage(); i<=pageInfo.getEndPage();i++){
+		%>
+			<a href = "boardList.bo?pageNum=<%=i%>&b_division=<%=b_division%>">[<%=i %>]</a>
+	    <%
+		}
+			if(pageInfo.getEndPage() < pageInfo.getPageCount()){//현재 마지막 그룹이 아니면
+	%>
+		<a href = "boardList.bo?pageNum=<%=pageInfo.getStartPage() + 10 %>&b_division=<%=b_division%>">[다음]</a>
+	<%
+		}
+	%>
+	<%
+		}
+	%>
+	<a href = "writeForm.bo?b_division=<%=b_division%>"><input type="button" value="글쓰기"></a>
+	<%
+	int u_division=(int)session.getAttribute("u_division");
+	%>
+	<% if(u_division==0){ %> 
+	<a href = "writeForm.bo?b_division=<%=b_division+3%>"><input type="button"  value="공지사항 글쓰기"></a>
+	<%} %>
+	</section>
+
+</body>
+</html>
+

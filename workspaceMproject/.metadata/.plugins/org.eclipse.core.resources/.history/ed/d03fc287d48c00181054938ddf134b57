@@ -1,0 +1,101 @@
+<%@page import="mrp.web.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#eventBoardArea{
+	width: 620px;
+	
+	margin: auto;
+	background-color: #FDF3DE;
+}
+
+h1 {
+	text-align: center;
+}
+
+table {
+	width: 600px;
+	margin: auto;
+	text-align: center; 
+}
+
+.eventImage {
+	width: 200px;
+	height: 150px;
+	border: none;
+	padding: 20px 35px;
+}
+
+.eventRegist {
+	color: white;
+	border: 1px solid #BCA9F5;
+	background-color: #BCA9F5;
+	font-size: small;
+	text-align: center;
+	padding: 0.4%;
+	height: 5%;
+	width: 15%;
+	margin-top: 3%;
+	margin-left: 8.7%;
+	border-radius: 10px;
+}
+.eventRegist:hover {
+	color: white;
+}
+</style>
+</head>
+<body>
+	<%
+		ArrayList<Board> eventBoardList = (ArrayList<Board>) request.getAttribute("eventBoardList");
+		int b_division = (Integer) request.getAttribute("b_division");
+		int u_division = (Integer) session.getAttribute("u_division");
+	%>
+
+	<section id="eventBoardArea">
+		<%
+			if (eventBoardList != null && eventBoardList.size() > 0) {
+		%>
+		<h1>
+			이벤트 목록<a href="eventBoardList.bo">더보기</a>
+		</h1>
+		<table>
+			<tr>
+				<%
+					for (int i = 0; i < eventBoardList.size(); i++) {
+						System.out.println(eventBoardList.get(i).getB_code());
+				%>
+
+				<td><a
+					href="boardContent.bo?b_code=<%=eventBoardList.get(i).getB_code()%>&b_division=<%=b_division%>">
+						<img src="images/<%=eventBoardList.get(i).getB_image()%>"
+						class="eventImage">
+				</a><br> 이벤트명 : <%=eventBoardList.get(i).getB_name()%><br> 기간
+					: <%=eventBoardList.get(i).getB_time()%></td>
+				<%
+					if ((i + 1) % 4 == 0) {
+				%>
+			</tr>
+			<tr>
+				<%
+					}
+						}
+				%>
+			
+			<tr>
+		</table>
+
+		<%
+			}
+		%>
+		<div class="eventRegist">
+		<a href="eventWriteForm.bo?b_division=<%=b_division%>"><b>이벤트 글 등록</b></a>
+		</div>
+	</section>
+</body>
+</html>

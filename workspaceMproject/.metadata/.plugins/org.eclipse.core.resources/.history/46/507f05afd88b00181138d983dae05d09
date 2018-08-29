@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>너의 영화는</title>
+<%
+	String form_menu = (String) request.getAttribute("form_menu");
+	System.out.print("form_menu : " + form_menu);
+	if (form_menu == null) {
+		form_menu = (String) session.getAttribute("form_menu");
+	}
+%>
+<style>
+#special {
+	background:#EAEAEA;
+	width: 1500px;
+	height: 900px;
+	margin: auto;
+}
+#wrap {
+	background: #EAEAEA;
+	width: 1300px;
+	height: 950px;
+	margin: auto;
+}
+
+#title {
+	height: 200px;
+}
+
+#main {
+	height: 600px;
+}
+
+#mainContent {
+	height: 600px;
+	width: 1300px;
+	float: left;
+}
+
+#footer {
+	height: 150px;
+	background: gray;
+}
+</style>
+</head>
+<body>
+	<section id="special">
+		<section id="wrap">
+			<header id="title">
+				<jsp:include page="index.jsp"></jsp:include>
+			</header>
+			<section id="main">
+				<section id="mainContent">
+					<jsp:include page="<%=form_menu%>"></jsp:include>
+				</section>
+			</section>
+		</section>
+	</section>
+</body>
+</html>

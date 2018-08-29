@@ -1,0 +1,37 @@
+package mrp.web.main.board.action;
+
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import mrp.web.main.Point.svc.PointProductListService;
+import mrp.web.main.board.svc.BoardListService;
+import mrp.web.main.board.svc.EventBoardListService;
+import mrp.web.vo.ActionForward;
+import mrp.web.vo.Board;
+import mrp.web.action.Action;
+import mrp.web.vo.PointProduct;
+
+public class EventBoardListAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int b_division = Integer.parseInt((String) request.getParameter("b_division"));
+        EventBoardListService eventBoardListService = new EventBoardListService();
+        BoardListService boardListService = new BoardListService();
+		ArrayList<Board> eventBoardList = eventBoardListService.getEventBoardList(b_division);
+		ArrayList<Board> boardNoticeList=null;
+		boardNoticeList=boardListService.getBoardNoticeList(b_division);
+		
+		request.setAttribute("boardNoticeList", boardNoticeList);
+		request.setAttribute("b_division", b_division);
+		request.setAttribute("eventBoardList", eventBoardList);
+		ActionForward forward = new ActionForward();
+		request.setAttribute("form_menu", "eventForm.jsp");
+		forward.setUrl("MainLayout.jsp");
+		
+		return forward;
+	}
+
+}

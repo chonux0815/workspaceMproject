@@ -1,0 +1,78 @@
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.head {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	position: relative;
+	font-size: x-large;
+	font-weight: bold;
+	background-color: #565151;
+	color: white;
+	width: 370px;
+	height: 32px;
+	border-radius: 10em;
+}
+
+.review {
+	position: absolute;
+	width: 370px;
+	height: 278px;
+	padding-top: 150px;
+}
+
+.info {
+	position: relative;
+	width: 100%;
+	text-align: center;
+}
+
+div>a {
+	padding: 12px;
+}
+
+.todayImage {
+	padding-left: 15px;
+	width: 100px;
+	height: 100px;
+}
+</style>
+</head>
+<%
+	ArrayList<String> todayImageList = (ArrayList<String>) request.getAttribute("todayImageList");
+%>
+<body>
+	<div class="review">
+		<div class="head">포인트 상점</div>
+		<%
+			if (todayImageList != null && todayImageList.size() > 0) {
+		%>
+		<table>
+			<tr>
+				<%
+					for (int m = 0; m < todayImageList.size(); m++) {
+				%>
+				<td><img src="images/<%=todayImageList.get(m)%>"
+					class="todayImage"></td>
+				<%
+					if (m == 2 || m == 5) {
+				%></tr><tr>
+				<%
+					}if(m == 9)break;
+						}
+				%>
+			</tr>
+		</table>
+		<%
+			}
+		%>
+	</div>
+</body>
+</html>

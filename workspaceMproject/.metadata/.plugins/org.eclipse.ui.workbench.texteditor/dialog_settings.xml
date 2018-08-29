@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.jst.jsp.ui.internal.preferences.ui.JSPTemplatePreferencePage$JSPEditTemplateDialog_dialogBounds">
+		<item value="612" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="330" key="DIALOG_HEIGHT"/>
+		<item value="46" key="DIALOG_X_ORIGIN"/>
+		<item value="57" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item value="false" key="isRegEx"/>
+		<item value="sujung" key="selection"/>
+		<item value="true" key="casesensitive"/>
+		<item value="false" key="incremental"/>
+		<item value="true" key="wrap"/>
+		<item value="false" key="wholeword"/>
+		<list key="findhistory">
+			<item value="sujung"/>
+			<item value="sujung&apos;"/>
+			<item value="re_step"/>
+			<item value="re"/>
+			<item value="System"/>
+			<item value="selectBoardList"/>
+			<item value="boardList.bo"/>
+			<item value="boardWriteForm.bo"/>
+			<item value="boardRemakeSuccess.bo"/>
+			<item value="삭제"/>
+			<item value="수정"/>
+			<item value="eventBoardList.bo"/>
+			<item value="getBoardList"/>
+			<item value="pointProductList.po"/>
+			<item value="boardContent.bo"/>
+		</list>
+		<list key="replacehistory">
+			<item value="value"/>
+			<item value="EventList"/>
+			<item value="ReviewList"/>
+			<item value="Review"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item value="288" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="390" key="DIALOG_HEIGHT"/>
+		<item value="782" key="DIALOG_X_ORIGIN"/>
+		<item value="212" key="DIALOG_Y_ORIGIN"/>
+	</section>
+</section>

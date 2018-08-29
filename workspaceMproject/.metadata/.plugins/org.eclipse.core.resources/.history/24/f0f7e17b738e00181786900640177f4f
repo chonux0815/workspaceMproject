@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="mrp.web.vo.PageInfo"%>
+<%@page import="mrp.web.vo.Board"%>
+<%@page import="java.util.ArrayList"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	ArrayList<Board> boardMovieList=(ArrayList<Board>)request.getAttribute("boardMovieList");
+	ArrayList<Board> boardReviewList=(ArrayList<Board>)request.getAttribute("boardReviewList");
+	ArrayList<Board> boardEventList=(ArrayList<Board>)request.getAttribute("boardEventList");
+%>
+<table>
+<%
+		if(boardList !=null && boardList.size() > 0){
+	%>
+			<tr class = "tr_title">
+				<td class = "td_mcode">영화제목</td>
+				<td class = "td_subject">제목</td>
+				<td class = "td_writer">작성자</td>
+				<td class = "td_readcount">조회수</td>
+<%
+		}
+%>
+</table>
+</body>
+</html>

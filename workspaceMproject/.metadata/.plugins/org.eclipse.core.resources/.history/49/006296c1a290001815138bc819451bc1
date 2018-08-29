@@ -1,0 +1,26 @@
+package kr.ac.daegu;
+
+import java.util.Scanner;
+
+public class Class_A {
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		float num = 0;
+		float sum = 0;
+		float c = 0f;
+		System.out.print("총 몇학기까지 이수하셨나요? ");
+		int k= scanner.nextInt();
+		for(int m = 0 ; m < k; m++) {
+				System.out.print("평균학점 입력 (예 : 4.5) = ");
+				float x = scanner.nextFloat();
+				System.out.print("학기 수강 학점 입력 (예 : 19) = ");
+				int y = scanner.nextInt();
+				sum += x*(float)y;
+				num += y;
+				c = sum/num;
+			System.out.println("현재까지의 학점을 계산 해보면"+ c + "입니다.");
+			System.out.println("===========================");
+		}
+		System.out.println("현재 총 학점은" + c + "입니다.");
+	}
+}

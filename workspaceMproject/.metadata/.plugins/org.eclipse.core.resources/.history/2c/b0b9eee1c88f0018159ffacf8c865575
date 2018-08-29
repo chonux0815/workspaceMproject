@@ -1,0 +1,18 @@
+<%@page import="mrp.web.vo.PayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<% PayList payList = (PayList)request.getAttribute("payList"); %>
+<body>
+성공
+<%=payList.getL_kind() %>
+<%=payList.getL_name() %>
+<%=payList.getL_point() %>
+<%=payList.getL_qty() %>
+</body>
+</html>

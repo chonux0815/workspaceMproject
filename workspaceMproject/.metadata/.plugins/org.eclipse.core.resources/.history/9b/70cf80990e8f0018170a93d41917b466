@@ -1,0 +1,62 @@
+<%@page import="mrp.web.vo.Movie"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	width: 200px;
+	height: 300px;
+}
+
+a {
+	color: red;
+}
+
+p {
+	font-weight: bolder;
+	text-align: center;
+}
+
+h1 {
+	margin: 10px;
+}
+
+.tab {
+	text-align: center;
+
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<%
+	Movie movieList = (Movie) request.getAttribute("movie");
+	int i = (int) request.getAttribute("i");
+%>
+<body>
+	<table class="tab" border="1">
+		<tr>
+			<td><h1><%=i%>위
+				</h1></td>
+			<td class="name"><h1><%=movieList.getMovieNum()%></h1></td>
+			<td colspan="2"><a><%=movieList.getRankOldAndNew()%></a></td>
+		</tr>
+		<tr>
+			<td colspan="2"><img
+				src="images/<%=movieList.getMovieNum()%>.jpg"></td>
+			<td colspan="2">무성이는 무성무성합니다</td>
+		</tr>
+		<tr>
+			<td colspan="3"><p>
+					누적 관객수 :<%=movieList.getAudiacc()%></p></td>
+		</tr>
+	</table>
+</body>
+</html>

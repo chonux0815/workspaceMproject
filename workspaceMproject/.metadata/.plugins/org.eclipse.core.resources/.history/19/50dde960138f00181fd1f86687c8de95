@@ -1,0 +1,138 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="mrp.web.vo.User"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>회원 목록</title>
+<script type="text/javascript">
+   function modifyPage(name) {
+      window.open("modifyUserForm.ad?u_name=" + name, "",
+            "width=430,height=500,location=no,status=no,scrollbars=yes");
+   }
+</script>
+<style>
+#mainContent{
+	text-align: center;
+	margin-left : 15%;
+}
+
+table {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-left: 1px solid #ccc;
+    margin: 20px 10px;
+    width : 70%;
+    height : 100%;
+    text-align: center;
+    font-size : small;
+}
+#title1{
+	font-size: large;
+	background-color : #dcdcd1;
+	border-bottom-color: #c00;
+}
+
+
+table th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #ececec;
+}
+table td {
+	
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border: 1px solid #ccc;
+    
+}
+
+
+
+</style>
+</head>
+
+<body>
+
+   <%
+      ArrayList<User> user = (ArrayList<User>) request.getAttribute("userList");
+
+      if (user != null && user.size() > 0) {
+   %>
+   <!-- get post  -->
+   <table>
+      <tr>
+         <td id= "title1"colspan="10"><h1>회원 목록</h1></td>
+      </tr>
+      <tr>
+
+         <th scope="cols">아이디</th>
+         <th scope="cols">닉네임</th>
+         <th scope="cols">이메일</th>
+         <th scope="cols">성별</th>
+         <th scope="cols">생년월일</th>
+         <th scope="cols">비밀번호</th>
+         <th scope="cols">회원등급</th>
+         <th scope="cols">포인트</th>
+         <th></th>
+         <th></th>
+      </tr>
+      <%
+         for (int i = 0; i < user.size(); i++) {
+      %>
+      <tr>
+         <td scope="row"><%=user.get(i).getU_id()%></td>
+         <td scope="row"><%=user.get(i).getU_name()%></td>
+         <td scope="row"><%=user.get(i).getU_email()%></td>
+         <td scope="row"><%=user.get(i).getU_gender()%></td>
+         <td scope="row"><%=user.get(i).getU_day()%></td>
+         <td scope="row"><%=user.get(i).getU_passwd()%></td>
+
+         <td>
+            <%
+               if (user.get(i).getU_division() == 1) {
+            %>회원<%
+               } else {
+            %>관리자<%
+               }
+            %>
+         </td>
+
+         <td><%=user.get(i).getU_point()%></td>
+         <td><input type="button"
+            onclick="location.href = 'deleteUser.ad?u_id=<%=user.get(i).getU_id()%>'; return false"
+            value="삭제"></td>
+         <td>
+            <%
+               if (user.get(i).getU_division() == 1) {
+            %><input type="button"
+            onClick="modifyPage('<%=user.get(i).getU_name()%>')" value='수정하기'>
+            <%
+               } else {
+            %> <b> - </b> <%
+    }
+ %>
+         </td>
+
+
+      </tr>
+      <%
+         }
+      %>
+
+   </table>
+
+   <%
+      }
+   %>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.footer {
+	
+	margin: 20px 0px 50px 10px;
+	display: table-cell;
+	width: 5%;
+	height: 125px;
+	text-align : right;
+	right: 100px;
+	
+
+	position: fixed;
+	bottom: 0;
+	
+	
+}
+
+
+.link {
+	border: 1px solid red;
+	width: 30%;
+	margin-left: 88%;
+	margin-top: 20%;
+	float: center;
+}
+
+a {
+	text-decoration: none;
+}
+
+img {
+	width: 50px;
+	height: 50px;
+}
+
+.footer>a {
+	margin-left: 10px;
+}
+</style>
+<meta charset="UTF-8">
+<title>너의 영화는</title>
+</head>
+<body>
+	<div class="footer">
+		<a href="https://www.facebook.com/profile.php?id=100010121074297"><img src="images/i1.png"></a>
+		<a href="https://www.twitter.com"><img src="images/i2.png"></a>
+		<a href="https://www.instagram.com"><img src="images/i3.png"></a>
+	</div>
+</body>
+</html>

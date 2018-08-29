@@ -1,0 +1,285 @@
+<%@page import="mrp.web.vo.PageInfo"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+
+<%@page import="mrp.web.vo.Board"%>
+<%@page import="mrp.web.vo.BoardBo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%!
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    %> --%>
+<%-- <%
+	ArrayList<BoardBo> boardBoList = (ArrayList<BoardBo>) request.getAttribute("boardBoList");
+	Board board = (Board) request.getAttribute("board");
+	int b_division = (int) request.getAttribute("b_division");
+%> --%>
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DAEGU</title>
+<style>
+.ggaggoong {
+	display: none;
+	height: 10px;
+}
+
+.ggaggoong2 {
+	display: none;
+	height: 20px;
+}
+
+td {
+	text-align: left;
+}
+
+.smalltext {
+	font-size: 5px;
+}
+
+.smalltext:active { .ggaggoong { display:block;
+	
+}
+.board_content1{
+	
+}
+
+}
+#board_title{
+	width:1000px;
+	 border-bottom: 1px solid #bcbcbc;
+	 margin-bottom: 1%;
+	 font-weight: bold;
+}
+#contentArea {
+	width: 70%;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+	border : solid 1px #bcbcbc;
+	padding-bottom: 2%;
+	background-color: #FAFAFA;
+	padding : 1.5%;
+}
+
+h1 {
+	text-align: center;
+	
+}
+
+#basicContent {
+	height: 70px;
+	border-bottom: 3px double orange;
+	text-align: center;
+}
+
+#detailContent {
+	margin-top: 2.5%;
+	overflow: auto;
+	text-align: left;
+}
+
+#commandArea {
+	width: 600px;
+	margin: auto;
+	margin-top: 10px;
+	text-align: center;
+}
+
+form {
+	display: inline;
+}
+
+p {
+	display: inline;
+	margin-right: 1%;
+}
+
+.td_Readcount{
+ border-bottom: 1px solid #bcbcbc;
+}
+#reftext{
+	width: 50%;
+	margin-top: 3%;
+	}
+.dat_content{
+ 	border-bottom: 1px solid #bcbcbc;
+ 	width: 1%;
+}
+.smalltext{
+	color : #817E7E;
+}
+#datgul{
+	background: #F2F1F1;
+}
+</style>
+
+<script type="text/javascript">
+function textview(code) {
+	document.getElementById("dattext"+code).style.display = "inline-block";
+	document.getElementById("data"+code).style.display = "inline-block";
+}
+function sujung(code){
+	document.getElementById("content"+code).style.display="none";
+	document.getElementById("sujung"+code).style.display="none";
+	document.getElementById("delete"+code).style.display="none";
+	document.getElementById("dat"+code).style.display="none";
+	document.getElementById("inputtext"+code).style.display="inline";
+	document.getElementById("ok"+code).style.display="inline";
+	document.getElementById("no"+code).style.display="inline";
+	
+}
+function ok(code) {
+	
+	var text=document.getElementById("inputtext"+code).value;
+	
+}
+function no(code) {
+	document.getElementById("ok"+code).style.display="none";
+	document.getElementById("no"+code).style.display="none";
+	document.getElementById("inputtext"+code).style.display="none";
+	document.getElementById("content"+code).style.display="inline";
+	document.getElementById("dat"+code).style.display="inline";
+	document.getElementById("sujung"+code).style.display="inline";
+	document.getElementById("delete"+code).style.display="inline";
+}
+function boardDelete(b_code, b_division) {
+	var check=confirm("삭제 하시겠습니까?");
+	if(check==true){
+		location.href="boardDelete.bo?b_code="+b_code+"&b_division="+b_division;
+	}
+}
+function textDatDelete(d_code,b_code,b_division) {
+	var check=confirm("삭제 하시겠습니까?");
+	if(check==true){
+		location.href="datDelete.bo?d_code="+d_code+"&b_code="+b_code+"&b_division="+b_division;
+	}
+}
+</script>
+
+</head>
+<body>
+
+	<section id="contentArea">
+		<h1>자신의 작성글은 본인의 얼굴입니다^^ 예쁘게 작성해주세요^^</h1>
+		<div class="basicContent">
+			<table>
+			<tr>
+			<td class="td_left"><label for="board_title"></label></td>
+			<td class="td_right" id="board_title">${board.getB_name()}</td>
+			</tr>
+			<tr>
+			<td class="td_left"><label for="board_writer"></label></td>
+			<td class="td_right" id="board_writer">${board.getB_author()}</td>
+			</tr>	
+			</table>
+<!-- 			<br> -->
+		</div>
+		<section id="detailContent">
+			<pre class="board_content1">${board.getB_content()}</pre>
+		</section>
+		<table>
+		<tr>
+			<td class="td_Readcount"><label for="board_Readcount">조회수</label></td>
+			<td class="td_Readcount" id="board_Readcount">${board.getReadcount()}</td><br>
+		</tr>
+		</table>
+		<br>
+		<table id="datgul">
+			<%
+				//int i = 0;
+				//	int u_division = (Integer) session.getAttribute("u_division");
+				//String u_name = (String) session.getAttribute("u_name");
+				//if (boardBoList != null) {
+				//	for (i = 0; i < boardBoList.size(); i++) {
+			%>
+			<c:set var = "i" value = "${0}"></c:set>
+			<c:out value = "${i}"></c:out>
+			<c:if test="${not empty boardList }">
+			
+			<c:forEach var="board" items = "${ boardBoList}" varStatus="status">
+			<c:set var = "i" value = "${i + 1 }"></c:set>
+			<tr class = "dat_title">
+				<td class = "dat_content">
+					<%-- <%
+						for (int j = 0; j < boardBoList.get(i).getRe_step(); j++) {
+					%> --%>
+					<c:forEach begin="1"  end="${board.re_step }" step="1">
+						 &nbsp;&nbsp;
+					</c:forEach>
+					 <%
+ //	}
+ %>                 ${board.b_author } :
+					<p id="content${board.d_code} ">${board.d_content} 
+					<p>
+					<form
+						action="datRemake.bo?b_division=${b_division}&d_code=${board.d_code}&b_code=${board.b_code}"
+						method="post" id="remake${board.d_code}">
+						<input name="inputtext${board.d_code}"
+							id="inputtext${board.d_code}" type="text"
+							class="ggaggoong" value="${board.d_cotent}">
+						<a href="#" id="ok${board.d_code}"
+							class="ggaggoong"
+							onclick="document.getElementById('remake${board.d_code}').submit();">확인</a>
+					</form> <a href="#" id="no${board.d_code}"
+					class="ggaggoong" onclick="no(${board.d_code})">취소</a>
+					<a href="#" id="dat${board.d_code}"
+					class="smalltext"
+					onclick="textview(${board.d_code})">댓글</a>&nbsp;
+					<%
+						//if (boardBoList.get(i).getD_author().equals(u_name) || u_division == 0) {
+					%> 
+					<c:if test="${board.d_author == u_name or u_division == 0 }">
+					<a href="#" id="sujung${board.d_code }"
+					class="smalltext"
+					onclick="sujung(${board.d_code })">수정</a>&nbsp;
+					<a href="#" id="delete${board.d_code }"
+					class="smalltext"
+					onclick="location.href='datDelete.bo?b_division=${b_division}&d_code=${board.d_code }&b_code=${board.d_boardcode }'">삭제</a>&nbsp;
+					<%
+					//	}
+					%>
+					</c:if>
+					<form method="post"
+						action="boardContentDat.bo?b_division=${b_division}&d_code=${board.d_code}&b_code=${board.d_boardcode }&name=${u_name}">
+						<input name="dattext${board.d_code }"
+							id="dattext${board.d_code }" class="ggaggoong"
+							type="text">
+						<!-- 텍스트 -->
+						<input type="submit" class="ggaggoong"
+							id="data${board.d_code }" value="작성">
+					</form>
+				</td>
+			</tr>
+			</c:forEach>
+			</c:if>
+		</table>
+		<form method="post"
+			action="boardContentDatRef.bo?ref=${i}&name=${u_name }&b_code=${board.b_code }&b_division=${b_division} ">
+			${i} |  ${u_name } | ${board.b_code } | ${b_division} <input id="reftext" type="text" name="reftext"><input
+				type="submit" value="댓글입력">
+		</form>
+	</section>
+	<section id="commandArea">
+		
+		<c:if test="${board.b_author == u_name or u_division == 0 }">
+		<a href="boardRemakeForm.bo?b_code=${board.b_code }&b_content=${board.b_content }&b_name=${board.b_name }&b_mcode=${board.b_mcode}&b_division=${board.b_division}" id="contentsujung" class="smalltext"
+			>수정</a>&nbsp;
+		<a id="contentdelete" class="smalltext" onclick="boardDelete(${board.b_code },${b_division})" >삭제</a>&nbsp;
+		</c:if>
+		<c:if test="${b_division == 3 or b_division == 6}">
+		<a href="eventBoardList.bo?b_division=${b_division }">목록보기</a>
+		</c:if>
+		<%-- <%// }else{ %> --%>
+		<c:if test="${b_division != 3 and b_division != 6}">
+		<a href="boardList.bo?b_division=${b_division }">목록보기</a>
+		<%-- <%
+		}%> 
+		--%>
+		</c:if>
+		
+	</section>
+</body>
+</html>

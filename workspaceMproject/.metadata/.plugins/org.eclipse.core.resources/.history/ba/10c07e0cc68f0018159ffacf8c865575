@@ -1,0 +1,144 @@
+<%@page import="mrp.web.vo.PointProduct"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#pointProductViewArea {
+	width: 80%;
+	height: 100%;
+	margin: auto;
+	margin-left: 20%;
+}
+
+.pointContent {
+	margin-top: 5%;
+	width: 100%;
+	height: 60%;
+}
+
+.he {
+	height: 150px;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+aside {
+	height: 30%;
+	width: 30%;
+	float: left;
+}
+
+#detailInfo {
+	height: 330px;
+	width: 500px;
+	float: left;
+	font-size: x-large;
+	text-align: center;
+	margin-top: 1%;
+}
+
+.button {
+	width: 100%;
+	height: 25%;
+	margin-left: 10%;
+}
+
+.pointFooter {
+	color: white;
+	margin-left: 3%;
+	background-color: #642EFE;
+	display: inline-block;
+	height: 20%;
+	width: 15%;
+	text-align: center;
+	padding-top: 1%;
+}
+
+.pointFooter:hover {
+	color: white;
+}
+
+.productImage {
+	height: 250px;
+	width: 300px;
+	padding-top: 2%;
+}
+
+.tablePoint {
+	width: 100%;
+	height: 70%;
+	margin-left: 3%;
+}
+
+.td_product {
+	font-size: large;
+	border-bottom: 1px thin #bcbcbc;
+}
+
+.td_product_title {
+	border-bottom: 1px solid #bcbcbc;
+	width: 60%;
+}
+
+.td_left {
+	font-size: large;
+	color: #369;
+}
+</style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<%
+		PointProduct pointProduct = (PointProduct) request.getAttribute("pointProduct");
+	%>
+	<div id="pointProductViewArea">
+		<div class="pointContent">
+			<aside>
+				<img src="images/<%=pointProduct.getP_image()%>"
+					class="productImage" />
+			</aside>
+			<section id="detailInfo">
+				<table class="tablePoint">
+					<tr>
+						<td class="td_left"><label for="p_name"></label></td>
+						<td class="td_product_title"><b>[<%=pointProduct.getP_name()%>]
+						</b></td>
+					</tr>
+					<tr>
+						<td class="td_left"><label for="p_point">판매가</label></td>
+						<td class="td_product"><b> <font color="red"><%=pointProduct.getP_point()%>P</b></td>
+					</tr>
+					<tr>
+						<td class="td_left"><label for="p_content">상품설명</label></td>
+						<td class="td_product"><%=pointProduct.getP_content()%></td>
+					</tr>
+					<tr>
+						<td class="td_left"><label for="p_term">유효기간 </label></td>
+						<td class="td_product"><%=pointProduct.getP_term()%></td>
+					</tr>
+				</table>
+		</div>
+
+		<div class="button">
+			<%
+				int totalMoney = pointProduct.getP_point();
+			%>
+			<a class="pointFooter" href="pointProductList.po">이전 화면</a> <a
+				class="pointFooter"
+				href="PointCartAdd.po?id=<%=pointProduct.getP_id()%>">장바구니 담기</a> <a
+				class="pointFooter"
+				onclick="location.href='updatePoint.po?totalMoney=<%=totalMoney%>'">결제</a>
+
+		</div>
+	</div>
+
+
+
+</body>
+</html>

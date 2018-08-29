@@ -1,0 +1,1 @@
+select * from board where b_division = ? AND (b_name=? OR b_content=? OR b_mcode=? OR b_author=?)

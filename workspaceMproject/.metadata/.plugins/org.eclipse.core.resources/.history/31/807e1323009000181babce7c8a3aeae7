@@ -1,0 +1,117 @@
+<%@page import="mrp.web.vo.Board"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	String u_name = (String) session.getAttribute("u_name");
+	int b_code=Integer.parseInt(request.getParameter("b_code"));
+	String b_content=request.getParameter("b_content");
+	String b_name=request.getParameter("b_name");
+	String b_mcode=request.getParameter("b_mcode");
+	int b_division=Integer.parseInt(request.getParameter("b_division"));
+	
+%>
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DAEGU</title>
+<style>
+<style>
+#writeFormArea  {
+	width: 75%;
+	height: 85%;
+	margin: auto;
+	text-align: center;
+	border : 0.5px solid #bcbcbc;
+	background-color:#FAFAFA; 
+}
+h1{
+	font-size: large;
+	margin-bottom: 2%;
+	text-align: center;
+	width: 100px;	
+}
+
+table {
+	width: 100%;
+	height: 100%;
+	margin: auto;
+}
+img.h1{
+	width : 100px;
+	height: 50px;
+}
+
+.td_left {
+	width: 20%;
+	text-align: center;
+}
+.td_left_content{
+	vertical-align: top;
+}
+
+.td_right {
+	width: 80%;
+	text-align: left;
+	
+}
+.td_right_content{
+	height : 100%;
+	text-align: left;
+}
+.text_name{
+	width : 50%;
+
+}
+</style>
+</head>
+<body>
+	<section id="writeFormArea">
+		<img class="h1" src="images/logo.png">
+		<form action="boardRemakeSuccess.bo?b_code=<%=b_code%>&b_division=<%=b_division %>" method="POST">
+			<table>
+				<tr>
+					<td class="td_left"><label for="board_writer">작성자</label></td>
+					<td class="td_right"  id="board_writer"><%=u_name %></td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="board_code">게시판 코드</label></td>
+					<td class="td_right">
+					<select name="b_division" id="board_code" value=<%=b_division%>>
+					
+						<option value="0" selected>추천게시판</option>
+						<option value="1">리뷰게시판</option>
+						<option value="2">영화 할인 정보</option>
+						
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="board_movie" >영화 제목</label></td>
+					<td  class="td_right">
+					<input type="text" name="b_mcode" id="board_movie" value="<%=b_mcode%>" >
+					
+					</td>
+				</tr>
+				<tr>
+					<td class="td_left"><label for="board_name">글제목</label></td>
+					<td class="td_right"><input type="text" name="b_name" id=board_subject" value="<%=b_name%>"></td>
+				</tr>
+			
+				
+				<tr>
+					<td class="td_left_content"><label for="b_content" ">글내용</label></td>
+					<td class="td_right_content"><textarea rows="23.5" cols="100"
+							name="b_content" id="board_content" value="<%=b_content%>"></textarea></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><input type="submit" value="수정완료"><input
+						type="reset" value="취소"></td>
+				</tr>
+			</table>
+		</form>
+	</section>
+</body>
+</html>
